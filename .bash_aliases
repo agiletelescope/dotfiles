@@ -1,18 +1,30 @@
-# bash
-alias l='ls'
-alias c='cp'
-alias m='mv'
-alias d='du -sh'
+# variables
+shortPs1='(\W) '
+longPs1='[\w] $ '
+
+#user additions;
+export PS1="[\w] $ "
+
+# general
 alias t='tmux -2'
-alias v="vim"
+alias v='vim'
 alias cl='clear'
 alias nm='nmtui'
+alias short='export PS1="(\W) "'
+alias unshort='export PS1="[\w] $ "'
+#alias short='if [ "$PS1" == "$shortPs1" ] then "export PS1='$longPs1'" else "export PS1='$shortPs1'"'
+alias n='ngrok http'
+alias p='python3'
+alias cpfr='cp -fr'
+alias dush='du -sh'
+alias postman='./home/sujay-br/Downloads/postman/Postman/app/Postman'
 
 # grep
-alias gssh='history | grep -i "ssh" -'
+alias showserver='history|grep -i "ssh" -'
 
-# git 
+# git
 alias g='git'
+alias gs='git status'
 alias gl='git log'
 alias glo='git log --oneline'
 alias gp='git push origin master'
@@ -20,30 +32,42 @@ alias ga='git add'
 alias gau='git add -u'
 alias gc='git commit -m'
 
-# android & adb
+# adb and android
 alias al='adb logcat'
 alias alc='adb logcat -c'
-alias and='/opt/android-studio/bin/studio.sh'
+alias killstudio='pkill -f android'
 
 # nav
-alias pa='cd /opt/AndroidStudioProjects/'
-alias pj='cd /opt/AndroidStudioProjects/AndroidInterface'
-alias pf='cd /home/acer-ddv/projects/'
-alias dow='cd /home/acer-ddv/Downloads'
-alias doc='cd /home/acer-ddv/Documents'
-alias des='cd /home/acer-ddv/Desktop'
 alias ..="cd .."
-alias ...="cd ../.."
-
-# make
-alias doall='source /home/acer-ddv/Desktop/totalMakeScript.sh'
-
-# misc
-alias flutter='/opt/flutter/bin/flutter'
-alias rcode='sudo code --user-data-dir="~/.vscode-root"'
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+alias ..4="cd ../../../.."
+alias ..5="cd ../../../../.."
+# cd() { cd "$1"; ls; }
+# alias cd='cdnew'
 
 
-# functions
+# flutter 
+alias f='flutter'
+alias fr='flutter run'
+alias fba='flutter build apk --release'
+alias fi='flutter install'
 
-# mkdir and cd
-# mkcd() { mkdir -p $1; cd $1  }
+
+# Edgetensor;
+export ANDROID_NDK=/home/sujay-br/Documents/android-ndk-r14b
+export PATH="$PATH:/usr/local/flutter/bin"
+export ANDROID_HOME="/home/sujay-br/Android/Sdk"
+
+alias et='cd /home/sujay-br/projects/et/'
+alias etlibs='cd /home/sujay-br/projects/et/EDGETENSOR-LIBS'
+alias etsdk='cd /home/sujay-br/projects/et/EDGETENSOR-SDK/APPLICATIONS'
+alias etoth='cd /home/sujay-br/projects/et/EDGETENSOR-OTHERS'
+alias etdms='cd /home/sujay-br/projects/et/EDGETENSOR-SDK/APPLICATIONS/dms'
+alias etfattr='cd /home/sujay-br/projects/et/EDGETENSOR-SDK/APPLICATIONS/fattr'
+alias etodet='cd /home/sujay-br/projects/et/EDGETENSOR-SDK/APPLICATIONS/odet'
+alias etfrec='cd /home/sujay-br/projects/et/EDGETENSOR-SDK/APPLICATIONS/frec'
+alias etscm='cd /home/sujay-br/projects/et/EDGETENSOR-SDK/APPLICATIONS/scm'
+alias ettests='cd /home/sujay-br/projects/et/EDGETENSOR-SDK/APPLICATIONS/tests'
+
+export LD_LIBRARY_PATH=/home/sujay-br/projects/et/EDGETENSOR-LIBS/libraries/3rdparty/install/opencv-3.4.2_with_contrib/x86_64-linux/lib:$LD_LIBRARY_PATH:/home/sujay-br/projects/et/EDGETENSOR-LIBS/libraries/odet/python/lib:/home/sujay-br/projects/et/EDGETENSOR-LIBS/libraries/3rdparty/install/OpenBLAS/x86_64-linux/lib:/home/sujay-br/projects/et/EDGETENSOR-LIBS/libraries/3rdparty/install/jsoncpp/lib-x86_64-linux
