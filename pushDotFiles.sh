@@ -10,6 +10,9 @@ cp -fr ~/.bash_aliases bash_aliases &> /dev/null
 # Push it to the repo
 echo "Git, adding all the files ..." &> /dev/null
 git add .
+
 echo "Git, Commiting files ..."
 git commit -m "added all dot files"
+
 git push
+echo "Updated Dotfiles"
