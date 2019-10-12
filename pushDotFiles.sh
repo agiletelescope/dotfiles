@@ -7,6 +7,7 @@ cp -fr ~/.config/i3status/config i3status &> /dev/null
 cp -fr ~/.bashrc bashrc &> /dev/null
 cp -fr ~/.bash_aliases bash_aliases &> /dev/null
 cp -fr ~/.config/i3blocks . &> /dev/null
+cp -fr ~/.config/i3blocks/cj_fetch_data.py cj_api_i3blocks.py &> /dev/null
 
 # Push it to the repo
 echo "Git, adding all the files ..." &> /dev/null
