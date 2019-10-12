@@ -57,12 +57,17 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+F2 exec qutebrowser
-bindsym $mod+F5 exec android-studio
-bindsym $mod+F6 exec mailspring
+bindsym $mod+Shift+F2 exec firefox
+bindsym $mod+F3 exec android-studio
+bindsym $mod+Shift+F3 exec code
+
+bindsym $mod+F5 exec mailspring
+bindsym $mod+F6 exec trello
+
 bindsym $mod+F12 exec terminal -e 'bmenu'
 # bindsym $mod+Space exec rofi --exec run
 # bindsym $mod+F3 exec pcmanfm
-bindsym $mod+Shift+F3 exec gksu pcmanfm
+# bindsym $mod+Shift+F3 exec gksu pcmanfm
 # bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
@@ -323,7 +328,8 @@ set_from_resource $term_color15    color15
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 	i3bar_command i3bar
-	status_command i3status
+	# status_command i3status
+	status_command i3blocks
 	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'

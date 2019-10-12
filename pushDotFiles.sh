@@ -6,6 +6,7 @@ cp -fr ~/.i3/config i3config &> /dev/null
 cp -fr ~/.config/i3status/config i3status &> /dev/null
 cp -fr ~/.bashrc bashrc &> /dev/null
 cp -fr ~/.bash_aliases bash_aliases &> /dev/null
+cp -fr ~/.config/i3blocks . &> /dev/null
 
 # Push it to the repo
 echo "Git, adding all the files ..." &> /dev/null

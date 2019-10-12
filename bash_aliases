@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # variables
 shortPs1='(\W) '
 longPs1='[\w] $ '
@@ -11,8 +13,8 @@ alias v='vim'
 alias h='htop'
 alias cl='clear'
 alias nm='nmtui'
-alias short='export PS1="(\W) "'
-alias unshort='export PS1="[\w] $ "'
+# alias short='export PS1="(\W) "'
+# alias unshort='export PS1="[\w] $ "'
 alias p='python3'
 alias cpfr='cp -fr'
 alias dush='du -sh'
@@ -32,37 +34,12 @@ alias glo='git log --oneline'
 alias ga='git add'
 alias gau='git add -u'
 alias gc='git commit -m'
-# Commit all changes & push them
-gp() {
-  if [ $# -ne 1 ]; then
-    echo "Invalid usage, provide a commit message"
-  else
-    echo "Git Status: "
-    git status
-    echo "Git adding changes: "
-    git add -u
-    echo "Git Commit: "
-    git commit -m "$1"
-    echo "Git Push: "
-    git push
-  fi
-}
 
 # adb and android
 alias killstudio='pkill -f android'
 alias al='adb logcat'
 alias alc='adb logcat -c'
 alias ak='adb kill-server'
-# adb connects to a host given an ip
-ac() {
-  # If invalid number of args
-  if [ $# -ne 1 ]; then
-    echo "Invalid usage, provide an IP address"
-  else
-    echo "Connecting to device: $1"
-    adb connect "$1"
-  fi
-}
 
 # nav
 alias ..="cd .."
@@ -85,3 +62,5 @@ alias adb='~/Android/Sdk/platform-tools/adb'
 # Other mods
 # 1. Disabled the keyboard beep warnings
 xset -b # Refer https://wiki.archlinux.org/index.php/PC_speaker for details
+# 2. This maps the caps key to escape
+setxkbmap -option caps:escape

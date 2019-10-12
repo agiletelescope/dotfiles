@@ -63,7 +63,7 @@ battery all {
         # status_full = ""
         # status_full = "☻"
         status_full = "FULL: "
-        low_threshold = 15
+        low_threshold = 30
         threshold_type = time
 }
 
