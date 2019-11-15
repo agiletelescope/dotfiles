@@ -11,13 +11,13 @@ color_red = "#FF0000"
 
 # Returns a color wrt num. of installs and num. of users
 def get_color(i, u):
-  if i > 30 and u > 135:
+  if i > 25 and u > 125:
     return color_red
-  elif i > 25 and u > 120:
+  elif i > 20 and u > 100:
     return color_green
-  elif i > 15 and u > 75:
+  elif i > 18 and u > 75:
     return color_blue
-  elif i > 12 and u > 70:
+  elif i > 15 and u > 70:
     return color_yellow
   elif i > 10 and u > 65:
     return color_lime

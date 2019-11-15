@@ -11,13 +11,13 @@ export PS1="[\w] $ "
 alias t='tmux -2'
 alias v='vim'
 alias h='htop'
-alias cl='clear'
 alias nm='nmtui'
-# alias short='export PS1="(\W) "'
-# alias unshort='export PS1="[\w] $ "'
+alias short='export PS1="(\W) "'
+alias unshort='export PS1="[\w] $ "'
 alias p='python3'
 alias cpfr='cp -fr'
 alias dush='du -sh'
+alias bri='sudo vim /sys/class/backlight/intel_backlight/brightness'
 
 # ls
 alias ll='ls -alF'
@@ -30,7 +30,7 @@ alias gs='git status'
 alias gl='git log'
 alias gd='git diff'
 alias glo='git log --oneline'
-# alias gp='git push origin master'
+alias gp='git push origin master'
 alias ga='git add'
 alias gau='git add -u'
 alias gc='git commit -m'
@@ -47,6 +47,7 @@ alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
+alias pr="cd ~/projects/chatJournal/cj_provider"
 
 # flutter 
 alias flutter='~/Android/flutter/bin/flutter'
@@ -56,6 +57,9 @@ alias fba='flutter build apk --release'
 alias fi='flutter install'
 alias fbr='flutter build appbundle --target-platform android-arm,android-arm64' 
 
+# Notifications
+alias timer='notify-send --urgency=critical $1'
+
 # Android related
 alias adb='~/Android/Sdk/platform-tools/adb'
 
@@ -64,3 +68,5 @@ alias adb='~/Android/Sdk/platform-tools/adb'
 xset -b # Refer https://wiki.archlinux.org/index.php/PC_speaker for details
 # 2. This maps the caps key to escape
 setxkbmap -option caps:escape
+# 3. Nltk Data
+PATH=$PATH:~/projects/ml/nltk/nltk_data

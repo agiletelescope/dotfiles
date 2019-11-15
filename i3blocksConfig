@@ -31,6 +31,12 @@ markup=none
 
 # CUSTOM
 
+# Record system uptime
+[uptime_monitor]
+command=uptime -p
+interval=60
+seperator=true
+
 # Makes a get request to the ag server to fetch installs and total users
 [cj_data_api]
 command=python cj_fetch_data.py
@@ -50,6 +56,10 @@ interval=10
 # label=LOAD 
 interval=10
 separator=true
+
+[temperature]
+seperator=true
+interval=60
 
 # The below gives the swap space
 # [memory]
