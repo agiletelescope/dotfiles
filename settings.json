@@ -1,0 +1,16 @@
+{
+    "workbench.colorTheme": "Visual Studio Light",
+    "vim.vimrc.enable": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "workbench.tree.indent": 20,
+    "python.autoComplete.typeshedPaths": [
+        "./song_server"
+    ],
+    "files.autoSave": "afterDelay",
+}
