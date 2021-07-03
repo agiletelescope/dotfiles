@@ -1,70 +1,113 @@
--- Enable / Disable bindings
-function enableBindings(bindings)
-    for k,v in pairs(bindings) do
-        v:enable()
-    end
-end
-function disableBindings(bindings)
-    for k,v in pairs(bindings) do
-        v:disable()
-    end
-end
+-- Hammerspoon Configurations
 
--- Enable / Disable browser bindings
-function enableBrowser()
-    enableBindings(browserBindings)
-end
-function disableBrowser()
-    disableBindings(browserBindings)
-end
-
--- Enable / Disable browser bindings
-function enableIterm()
-    enableBindings(itermBindings)
-end
-function disableIterm()
-    disableBindings(itermBindings)
-end
-
-function remap(letter)
-    return hs.hotkey.new({"ctrl"}, letter, nil, function()
-        -- hs.alert.show("ctrl + " .. letter)
-        hs.eventtap.event.newKeyEvent("cmd", true):post()
-        hs.eventtap.event.newKeyEvent(letter, true):post()
-    end)
-end
-
--- Default Bindings
-hs.hotkey.bind({"ctrl"}, "z", nil, function()
-    hs.eventtap.keyStroke({"cmd"}, "z")
-end)
-hs.hotkey.bind({"ctrl"}, "s", nil, function()
-    hs.eventtap.keyStroke({"cmd"}, "s")
-end)
-
-
--- Application specific mappings
-browserBindings = {
-    remap('l'),
-    remap('t'),
-    remap('w'),
-    remap('r'),
+----------------------------------------------------
+--------------- Default Bindings -------------------
+----------------------------------------------------
+cmd2CtrlKeys = {
+    "z",    -- Undo
+    "s",    -- Save
+    "a"     -- Select All
 }
+for i=1,#cmd2CtrlKeys do
+    local key = cmd2CtrlKeys[i]
+    hs.hotkey.bind({"ctrl"}, key, nil, function()
+        hs.eventtap.keyStroke({"cmd"}, key)
+      end)
+end
+
+
+ctrlShiftKeys = {
+    "c",    -- Copy
+    "v",    -- Paste
+}
+for i=1,#ctrlShiftKeys do
+
+    local key = ctrlShiftKeys[i]
+    hs.hotkey.bind({"ctrl", "shift"}, key, nil, function()
+        hs.eventtap.keyStroke({"cmd"}, key)
+      end)
+end
+
+-- ctrl+shift+z = Redo
+hs.hotkey.bind({"ctrl", "shift"}, "z", nil, function()
+    hs.eventtap.keyStroke({"cmd", "shift"}, "z")
+  end)
+
+-- Rebind quit from cmd+q to cmd+shift+q
+hs.hotkey.bind({"cmd"}, "q", nil, function()
+    showToast("Use cmd+shift+q")
+  end)
+hs.hotkey.bind({"cmd", "shift"}, "q", nil, function()
+    local app = hs.application.frontmostApplication()
+    app:kill()
+  end)
+
+
+----------------------------------------------------
+--------------- Browser Bindings -------------------
+----------------------------------------------------
+
+browserNames = {
+    "Brave Browser",
+    "Google Chrome",
+    "Firefox",
+    "Safari"
+}
+browserBindings = { 
+    "l",    -- Focus address bar
+    "t",    -- Create a new tab
+    "w",    -- Close current tab
+    "r"     -- Reload current tab
+}
+
+for i=1,#browserNames do
+    for j=1,#browserBindings do
+        
+        local key = browserBindings[j]
+        local browserHandler = hs.hotkey.new("ctrl", key, nil, function()
+            hs.eventtap.keyStroke({"cmd"}, key)
+            -- showToast("ctrl + " .. key)
+          end)
+
+        hs.window.filter.new(browserNames[i])
+            :subscribe(hs.window.filter.windowFocused,function() browserHandler:enable() end)
+            :subscribe(hs.window.filter.windowUnfocused,function() browserHandler:disable() end)
+    
+    end
+end
+
+----------------------------------------------------
+----------------- Iterm2 Bindings -------------------
+----------------------------------------------------
+
 itermBindings = {
-    remap('t'),
-    remap('w'),
-    remap('n'),
+    "t", 
+    "w",
+    "n"
 }
 
--- Listeners
-local wf = hs.window.filter
+for i=1,#itermBindings do
 
--- Brave browser
-browser = wf.new{'Brave Browser'}
-browser:subscribe(wf.windowFocused, enableBrowser)
-browser:subscribe(wf.windowUnfocused, disableBrowser)
+    local key = itermBindings[i]
+    local itermHandler = hs.hotkey.new("ctrl", key, nil, function()
+        hs.eventtap.keyStroke({"cmd"}, key)
+        -- showToast("ctrl + " .. key)
+      end)
 
--- iTerm
--- terminal = wf.new{'Terminal'}
--- terminal:subscribe(wf.windowFocused, enableIterm)
--- terminal:subscribe(wf.windowUnfocused, disableIterm)
+    hs.window.filter.new("iTerm2")
+        :subscribe(hs.window.filter.windowFocused,function() itermHandler:enable() end)
+        :subscribe(hs.window.filter.windowUnfocused,function() itermHandler:disable() end)
+    
+end
+
+----------------------------------------------------
+-------------------- Utils -------------------------
+----------------------------------------------------
+
+function showNotification(msg)
+    hs.notify.new({title=msg, informativeText="Hammerspoon"}):send()
+end
+
+function showToast(msg)
+    hs.alert.show(msg)
+end
