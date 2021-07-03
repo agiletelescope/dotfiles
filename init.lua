@@ -34,12 +34,21 @@ function remap(letter)
     end)
 end
 
+-- Default Bindings
+hs.hotkey.bind({"ctrl"}, "z", nil, function()
+    hs.eventtap.keyStroke({"cmd"}, "z")
+end)
+hs.hotkey.bind({"ctrl"}, "s", nil, function()
+    hs.eventtap.keyStroke({"cmd"}, "s")
+end)
+
 
 -- Application specific mappings
 browserBindings = {
     remap('l'),
     remap('t'),
     remap('w'),
+    remap('r'),
 }
 itermBindings = {
     remap('t'),
