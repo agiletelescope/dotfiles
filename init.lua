@@ -19,6 +19,7 @@ end
 ctrlShiftKeys = {
     "c",    -- Copy
     "v",    -- Paste
+    "z",    -- Redo
 }
 for i=1,#ctrlShiftKeys do
 
@@ -57,7 +58,7 @@ browserBindings = {
     "l",    -- Focus address bar
     "t",    -- Create a new tab
     "w",    -- Close current tab
-    "r"     -- Reload current tab
+    "r",    -- Reload current tab
 }
 
 for i=1,#browserNames do
@@ -76,14 +77,52 @@ for i=1,#browserNames do
     end
 end
 
+
+----------------------------------------------------
+--------------- Copy/Paste Bindings ----------------
+----------------------------------------------------
+editorNames = {
+    "Sublime Text",
+    "PyCharm CE",
+    "Visual Studio Code",
+
+    "Brave Browser",
+    "Google Chrome",
+    "Firefox",
+    "Safari",
+
+    -- "iTerm2"    -- blocks ctrl+c interrupt
+
+}
+editorBindings =  {
+    "c",    -- Copy
+    "v",    -- Paste 
+}
+
+for i=1,#editorNames do
+    for j=1,#editorBindings do
+        
+        local key = editorBindings[j]
+        local editorHandler = hs.hotkey.new("ctrl", key, nil, function()
+            hs.eventtap.keyStroke({"cmd"}, key)
+            -- showToast("ctrl + " .. key)
+          end)
+
+        hs.window.filter.new(browserNames[i])
+            :subscribe(hs.window.filter.windowFocused,function() editorHandler:enable() end)
+            :subscribe(hs.window.filter.windowUnfocused,function() editorHandler:disable() end)
+    
+    end
+end
+
 ----------------------------------------------------
 ----------------- Iterm2 Bindings -------------------
 ----------------------------------------------------
 
 itermBindings = {
-    "t", 
-    "w",
-    "n"
+    "t",    -- New Tab
+    "w",    -- Close Window
+    "n",    -- New Window
 }
 
 for i=1,#itermBindings do
